@@ -1,0 +1,127 @@
+﻿@page "{noplanete}"
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using System.Globalization
+@using TP2NASA.Models
+@model TP2NASA.Pages.Planètes.PlanèteModel
+@inject IViewLocalizer ViewLocalizer
+@{
+    var currentCategorie = "";
+    var currentName = "";
+    ViewData["Title"] = Model.Planète!.Nom + @ViewLocalizer["SousTitre"];
+    CultureInfo currentCulture = Thread.CurrentThread.CurrentUICulture;
+ 
+}
+<div class="fiche col-12">
+    <!-- ROW POUR ENTETE (NOM DE LA PLANETE)-->
+    <div class="row text-center">
+        <h1>@Model.Planète!.Nom</h1>
+    </div>
+    <!-- ROW POUR SÉPARER LE CORPS EN DEUX-->
+    <div class="row">
+        <div class="col-8">
+            <!-- ROW POUR LA DESCRIPTION ET LA BARRE DE DIVISION-->
+            <div class="row">
+                <div class="description col-12">
+                    <p>@Model.Planète!.Description</p>
+                    <hr />
+                </div>
+            </div>
+            <!-- ROW POUR LES SOUS-RUBRIQUES-->
+            <div class="row">
+                <div class="col-6"><h3>@ViewLocalizer["InfosGénérales"]</h3></div>
+                <div class="col-6"><h3>@ViewLocalizer["Caractéristiques"]</h3></div>
+            </div>
+            <!-- ROW POUR LA TABLE D'INFORMATIONS ET LA LISTE DE CARACTÉRISTIQUES-->
+            <div class="row">
+                <div class="col-6">
+                    <table class="informations">
+                        <tr>
+                            <td>
+                                @ViewLocalizer["Numéro"]:
+                            </td>
+                            <td>
+                                @Model.Planète.NoPlanète
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @ViewLocalizer["Révolution"]:
+                            </td>
+                            <td>
+                                @Model.Planète.Révolution @ViewLocalizer["Jours"]
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @ViewLocalizer["Satellites"]:
+                            </td>
+                            <td>
+                                @Model.Planète.NbSatellites
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-6">
+                    @if (currentCulture.IetfLanguageTag == "en"){
+                    
+                        @foreach (Models.Caractéristique item in Model.Planète.CaractéristiquesEN!)
+                        {
+                            if (item.Catégorie != currentCategorie)
+                            {
+                                <ul>
+                                    <li>
+                                        @item.Catégorie
+                                        <ol>
+                                            @foreach (Models.Caractéristique subitem in Model.Planète.CaractéristiquesEN!)
+                                            {
+                                                if (subitem.Catégorie == item.Catégorie && subitem.Nom != currentName)
+                                                {
+                                                    <li>
+                                                        @subitem.Nom : @subitem.Valeur @subitem.MesureHtml
+                                                    </li>
+                                                }
+                                                currentName = subitem.Nom;
+                                            }
+                                        </ol>
+                                    </li>
+                                </ul>
+                            }
+                            currentCategorie = item.Catégorie;
+                        }
+                    }
+                    else
+                    {
+                        @foreach (Models.Caractéristique item in Model.Planète.Caractéristiques!)
+                        {
+                            if (item.Catégorie != currentCategorie)
+                            {
+                                <ul>
+                                    <li>
+                                        @item.Catégorie
+                                        <ol>
+                                            @foreach (Models.Caractéristique subitem in Model.Planète.Caractéristiques!)
+                                            {
+                                                if (subitem.Catégorie == item.Catégorie && subitem.Nom != currentName)
+                                                {
+                                                    <li>
+                                                        @subitem.Nom : @subitem.Valeur @subitem.MesureHtml
+                                                    </li>
+                                                }
+                                                currentName = subitem.Nom;
+                                            }
+                                        </ol>
+                                    </li>
+                                </ul>
+                            }
+                            currentCategorie = item.Catégorie;
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="case_img col-4">
+            <img class="img_planète @Model.Planète.Nom!" src="data:@Model.Planète..Type!;base64,@Convert.ToBase64String(@Model.Planète.Image!.Data!)" alt="@Model.Planète.Image.Nom" />
+        </div>
+    </div>
+</div>	

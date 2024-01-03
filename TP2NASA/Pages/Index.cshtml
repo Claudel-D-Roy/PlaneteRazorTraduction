@@ -1,0 +1,50 @@
+﻿@page 
+@using Microsoft.AspNetCore.Mvc.Localization
+@using TP2NASA.Models
+@model TP2NASA.Pages.Planètes.PlanèteModel
+@inject IViewLocalizer ViewLocalizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewData["Title"] = "Accueil - Les planètes du système solaire";
+   
+    var dt = 25;
+}
+
+<div class="accueil col-12">
+    <div class="row">
+        <h2 class="col-12 text-center">@ViewLocalizer["SousTitre"]</h2>
+        <vc:pub date="dt" message="@ViewLocalizer["Pub"].Value"></vc:pub>
+    </div>
+    <div class="row text-center">
+        @foreach (Models.Planète item in Model.Planètes!)
+        {
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                <table>
+                    <tr>
+                        <td>
+                            @if (item.Image == null)
+                            {
+                                <img src="~/img/no-image.png" />
+                            }
+                            else
+                            {
+                                <a asp-route-noplanete="@item.NoPlanète" asp-page="/Planète"><img class="img_planète" src="data:@item.Image!.Type!;base64,@Convert.ToBase64String(@item.Image!.Data!)" alt="Image de @item.Image.Nom" /></a>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a class="text-dark" asp-route-noplanete="@item.NoPlanète" asp-page="/Planète"><h3 class="nom-hover">@item.Nom</h3></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="texte-justifié">@item.Résumé</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+    </div>
+</div>

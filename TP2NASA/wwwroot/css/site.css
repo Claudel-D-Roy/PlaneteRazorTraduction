@@ -1,0 +1,131 @@
+html {
+    font-size: 12px;
+    font-family: "Raleway", "Helvetica Neue", sans-serif;
+}
+
+body {
+    background-image: url(../img/Solar_sys.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+    richness: 100;
+}
+
+#logo {
+    height: 50px;
+    width: 50px;
+}
+
+.accueil {
+    min-width: 100%;
+    background-color: #c5d6ff;
+    position: relative;
+}
+
+    .accueil img {
+        width: 95%;
+        aspect-ratio: 1;
+        border: 3px solid white;
+        border-radius: 7px 35px 7px 35px;
+    }
+
+    .accueil td p {
+        text-justify: inter-word;
+        text-align: justify !important;
+        padding-inline: 0.5em;
+    }
+
+    .accueil table {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+.fiche {
+    min-width: 100%;
+    background-color: #c5d6ff;
+    position: relative;
+    font-size: 16px;
+}
+
+    .fiche img {
+        width: 95%;
+        aspect-ratio: 1;
+        border: 3px solid white;
+        display: block;
+        margin-bottom: 20px;
+        background-color: black;
+    }
+
+    .fiche h3 {
+        padding-left: 10px;
+        padding-bottom: 5px;
+    }
+
+    .fiche table {
+        width: 90%;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        background-color: black;
+        color: white;
+    }
+
+        .fiche table td {
+            padding: 10px;
+            border: 1px solid grey;
+        }
+
+.sondage {
+    min-width: 100%;
+    background-color: #c5d6ff;
+    padding: 10px;
+    position: relative;
+}
+
+    .sondage button {
+        background-color: black;
+        color: white;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+.description {
+    text-align: justify;
+    padding-left: 25px;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+p {
+    text-align: justify;
+    font-weight: 600;
+    margin: auto;
+}
+
+.card {
+    border: 3px solid white;
+    border-radius: 7px;
+    padding: 0.3em;
+}
+
+    .card:not(.sondage) {
+        margin-inline: 1em;
+        margin-bottom: 1em;
+    }
+
+    .card .card-body {
+        margin: 0 !important;
+        padding: 0 !important;
+        vertical-align: top;
+    }
+
+        .card .card-body #message {
+            text-align: center;
+        }

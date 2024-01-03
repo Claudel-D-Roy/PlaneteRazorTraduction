@@ -1,0 +1,20 @@
+﻿@*/// <summary>
+    /// Auteur: Claudel D. Roy, Willaim Jubinville, Mathieu Duval
+    /// Description: Affichage des pubs.
+    /// Date: 12-16-2022
+    ///
+</summary>
+///*@
+
+@using TP2NASA.ViewComponents
+@using TP2NASA.Models
+@model PubViewComponent
+<div class="mt-3">
+    <div class="card border-white bg-black">
+        <div class="card-body">
+                <p id="message" class="text-white">
+                    @Model.ViewModel.Message
+                </p>
+        </div>
+    </div>
+</div>
